@@ -36,7 +36,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Product> getProduById(@PathVariable Long id) {
+	public ResponseEntity<Product> getProduById(@PathVariable String id) {
 		Product allProducts = productRepository.findFirstByActiveTrueAndId(id);
 		return ResponseEntity.ok(allProducts);
 	}
@@ -59,7 +59,7 @@ public class ProductController {
 
 			Product productUpdate = productOptional.get();
 			productUpdate.setName(product.getName());
-			productUpdate.setPrice_in_cents(product.getPrice_in_cents());
+			productUpdate.setPrice(product.getPrice());
 			return ResponseEntity.ok(productUpdate);
 
 		} else {
@@ -72,7 +72,7 @@ public class ProductController {
 
 	@DeleteMapping("/{id}")
 	@Transactional
-	public ResponseEntity deleteProduct(@PathVariable Long id) {
+	public ResponseEntity deleteProduct(@PathVariable String id) {
 		Optional<Product> productOptional = productRepository.findById(id);
 
 		if (productOptional.isPresent()) {

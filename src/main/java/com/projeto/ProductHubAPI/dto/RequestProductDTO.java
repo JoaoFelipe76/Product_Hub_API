@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 public class RequestProductDTO {
 	
-	private Long id;
+	private String id;
 	
 	@NonNull
 	private String name;
 	
 	@NonNull
-	private Integer price_in_cents;
+	private Integer price;
 	
 
 }

@@ -20,22 +20,21 @@ import lombok.NoArgsConstructor;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-        private Long id;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String id;
 
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "price_in_cents")
-	private Integer price_in_cents;
+	@Column(name = "price")
+	private Integer price;
 
 	@Column(name = "active")
 	private Boolean active;
 
 	public Product(RequestProductDTO requestProductDTO) {
 		this.name = requestProductDTO.getName();
-		this.price_in_cents = requestProductDTO.getPrice_in_cents();
+		this.price = requestProductDTO.getPrice();
 		this.active = true;
 	}
 
